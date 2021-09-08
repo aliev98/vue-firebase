@@ -1,0 +1,79 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3.2.1"></script>
+    <style>
+        html{
+            background-color: rgb(35, 66, 92);
+        }
+        
+        body{
+            background: #eee;
+            max-width: 960px;
+            margin: 20px auto;
+            /* text-align: center; */
+        }
+        p,h3,ul{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style-type: none;
+            background: #fff;
+            margin: 20px auto;
+            padding: 5px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+    li.fav{
+        background: rgb(23, 170, 48);
+        /* color:white; */
+    }
+
+    .hello{
+  position: absolute; 
+  left: 50; 
+  right: 0;
+  margin-bottom:150px;
+  margin-left: auto; 
+  margin-right: auto; 
+  width: 100px; /* Need a specific value to work */
+    }
+    </style>
+</head>
+<body>
+    <h1>Hello Vue</h1>
+<div id="app">
+        <!-- <a :href = "url">Linus företag</a> -->
+        
+        <div v-if="showBooks" style = "position: relative;">
+            <ul>
+                <li v-for="book in books" :class="{fav: book.isFav }" @click = "toggleFav(books.indexOf(book))">
+                    <img :src="book.img" alt = "book.title">
+                    <h3 v-if="book.isFav" class= "hello">Favourite</h3>
+                    <h3> {{book.title}} </h3>
+                    <p> written by - <strong>{{book.author}}</strong> </p>
+                </li>
+            </ul>
+        </div>
+
+        <button @click="toggleShowBooks">
+                <span v-if="showBooks">Hide books</span>
+                <span v-else>Show books</span>
+        </button>
+
+        
+        <div v-show="showBooks">Currently showing books</div>
+</div>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
